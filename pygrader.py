@@ -33,6 +33,9 @@ print('In/out files =', test_file_in, '/', test_file_out)
 
 
 def check_output(input_fn, output_fn, solution_fn):
+	if args.gen_solutions:
+		shutil.copy(output_fn, solution_fn)
+		return True, 'Solution generated'
 	if args.checker:
 		with tempfile.TemporaryFile() as f_err:
 			checker_output = subprocess.check_output([
